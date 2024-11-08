@@ -78,6 +78,13 @@
             background-color: #990000;
         }
 
+        .success-message {
+            display: none;
+            color: #00cc00;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
@@ -106,13 +113,19 @@
         </header>
 
         <div class="confession-box">
-            <form id="confessionForm">
+            <form action="https://formsubmit.co/ConfessionProject666@protonmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Anonymous Confession">
+                <input type="hidden" name="_template" value="box">
                 <textarea 
+                    name="message"
                     placeholder="Type your confession here..."
                     required
                 ></textarea>
                 <button type="submit">Submit Confession</button>
             </form>
+            <div id="successMessage" class="success-message">
+                Your confession has been received. Seek peace.
+            </div>
         </div>
     </div>
 
@@ -120,12 +133,5 @@
         <div class="candle">🕯️</div>
         <p>All confessions are anonymous</p>
     </footer>
-
-    <script>
-        document.getElementById('confessionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            window.open('https://docs.google.com/forms/d/e/1FAIpQLScZicQBjYofWUVXav85WefAFbVYOZgux9ex2FP5R_C3L90uxw/viewform?usp=sf_link', '_blank');
-        });
-    </script>
 </body>
 </html>
