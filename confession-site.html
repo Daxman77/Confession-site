@@ -78,13 +78,6 @@
             background-color: #990000;
         }
 
-        .success-message {
-            display: none;
-            text-align: center;
-            color: #00cc00;
-            margin-top: 1rem;
-        }
-
         footer {
             text-align: center;
             padding: 2rem;
@@ -120,9 +113,6 @@
                 ></textarea>
                 <button type="submit">Submit Confession</button>
             </form>
-            <div id="successMessage" class="success-message">
-                Your confession has been received. Seek peace.
-            </div>
         </div>
     </div>
 
@@ -134,12 +124,7 @@
     <script>
         document.getElementById('confessionForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you would typically add code to send the confession to your backend
-            document.querySelector('textarea').value = '';
-            document.getElementById('successMessage').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 3000);
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLScZicQBjYofWUVXav85WefAFbVYOZgux9ex2FP5R_C3L90uxw/viewform?usp=sf_link', '_blank');
         });
     </script>
 </body>
