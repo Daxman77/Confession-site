@@ -6,8 +6,8 @@
     <title>Forgive me Dax, for I have sinned</title>
     <style>
         body {
-            background-color: #1a1a1a;
-            color: #e6e6e6;
+            background-color: #0a0a0a;
+            color: #bababa;
             font-family: 'Georgia', serif;
             margin: 0;
             padding: 0;
@@ -15,101 +15,182 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(30, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+                url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 0h1L0 6V5zm1 5v1H5z' fill='%23200000' fill-opacity='.1'/%3E%3C/svg%3E");
         }
 
         .container {
             max-width: 800px;
             padding: 2rem;
             width: 90%;
+            position: relative;
         }
 
         header {
             text-align: center;
             margin-bottom: 3rem;
             padding-top: 2rem;
+            position: relative;
+        }
+
+        .candle-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .candle {
+            font-size: 2.5rem;
+            margin: 1rem;
+            animation: flicker 3s infinite;
+            text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00;
+        }
+
+        .smoke {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: smoke 3s infinite;
+            color: #4a4a4a;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
-            color: #cc0000;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #990000;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(255, 0, 0, 0.3);
+            font-family: 'Georgia', serif;
+            letter-spacing: 2px;
         }
 
         .subtitle {
             font-style: italic;
-            color: #888;
+            color: #666;
             margin-bottom: 2rem;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
 
         .confession-box {
-            background-color: #2a2a2a;
+            background-color: #151515;
             border: 1px solid #333;
             border-radius: 5px;
             padding: 2rem;
             margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 0 20px rgba(0, 0, 0, 0.5),
+                inset 0 0 10px rgba(255, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .confession-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #440000, transparent);
         }
 
         textarea {
             width: 100%;
             height: 200px;
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #444;
+            background-color: #1a1a1a;
+            color: #ddd;
+            border: 1px solid #333;
             padding: 1rem;
             margin-bottom: 1rem;
             font-family: 'Georgia', serif;
             resize: vertical;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #660000;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(102, 0, 0, 0.3);
         }
 
         button {
-            background-color: #cc0000;
-            color: white;
+            background-color: #660000;
+            color: #ddd;
             border: none;
             padding: 1rem 2rem;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
             width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
-            background-color: #990000;
+            background-color: #800000;
+            box-shadow: 0 0 15px rgba(102, 0, 0, 0.5);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        .success-message {
-            display: none;
-            color: #00cc00;
-            text-align: center;
-            margin-top: 1rem;
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        button:hover::after {
+            opacity: 1;
         }
 
         footer {
             text-align: center;
             padding: 2rem;
-            color: #666;
+            color: #444;
             margin-top: auto;
-        }
-
-        .candle {
-            font-size: 2rem;
-            margin: 1rem;
-            animation: flicker 2s infinite;
+            font-style: italic;
+            position: relative;
         }
 
         @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px #ff6b00, 0 0 20px #ff6b00, 0 0 30px #ff6b00; }
+            25% { opacity: 0.85; text-shadow: 0 0 8px #ff6b00, 0 0 16px #ff6b00, 0 0 24px #ff6b00; }
+            50% { opacity: 0.95; text-shadow: 0 0 12px #ff6b00, 0 0 24px #ff6b00, 0 0 36px #ff6b00; }
+            75% { opacity: 0.8; text-shadow: 0 0 6px #ff6b00, 0 0 12px #ff6b00, 0 0 18px #ff6b00; }
+        }
+
+        @keyframes smoke {
+            0% { transform: translateY(0) translateX(-50%) scale(1); opacity: 0; }
+            10% { opacity: 0.5; }
+            50% { transform: translateY(-20px) translateX(calc(-50% + 10px)) scale(1.5); opacity: 0.2; }
+            100% { transform: translateY(-40px) translateX(calc(-50% + 20px)) scale(2); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="candle">🕯️</div>
+            <div class="candle-wrapper">
+                <div class="smoke">〰️</div>
+                <div class="candle">🕯️</div>
+            </div>
             <h1>Forgive me Dax, for I have sinned</h1>
-            <div class="subtitle">Share your confession anonymously</div>
+            <div class="subtitle">Share your darkest confessions anonymously</div>
         </header>
 
         <div class="confession-box">
@@ -118,20 +199,20 @@
                 <input type="hidden" name="_template" value="box">
                 <textarea 
                     name="message"
-                    placeholder="Type your confession here..."
+                    placeholder="Type your confession here, sinner..."
                     required
                 ></textarea>
-                <button type="submit">Submit Confession</button>
+                <button type="submit">Confess Your Sins</button>
             </form>
-            <div id="successMessage" class="success-message">
-                Your confession has been received. Seek peace.
-            </div>
         </div>
     </div>
 
     <footer>
-        <div class="candle">🕯️</div>
-        <p>All confessions are anonymous</p>
+        <div class="candle-wrapper">
+            <div class="smoke">〰️</div>
+            <div class="candle">🕯️</div>
+        </div>
+        <p>All confessions remain in eternal darkness</p>
     </footer>
 </body>
 </html>
